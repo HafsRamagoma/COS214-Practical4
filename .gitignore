@@ -1,0 +1,59 @@
+# Compiled Object files
+*.o
+*.obj
+*.so
+*.dylib
+*.a
+*.lib
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM
+*.pdb
+
+# macOS system files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled/Link files
+*.gcno
+*.gcda
+
+# Backup files
+*.bak
+*.tmp
+
+# Build directories
+build/
+bin/
+Debug/
+Release/
+
+# Code coverage files
+*.gcov
+
+# Logs
+*.log
+
+# Archive files (unless you need them)
+*.zip
+*.tar.gz
+*.rar
+
+# PDFs (if you don't want to track them)
+*.pdf
+
+# Temporary files
+temp/
+tmp/

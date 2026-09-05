@@ -15,9 +15,12 @@ public:
 
 	virtual ~TaskState();
 
-	virtual void process() = 0;		//defines the state behaviour
+	virtual void process();		//defines the state behaviour
 
 	virtual std::string getStateName() = 0; //used by TaskItem::print()
+
+	//All six transitions below default to "reject and log" in the base class.
+	//Concrete states override only the transitions that are legal for them.
 
 	void start();
 

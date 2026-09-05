@@ -5,16 +5,25 @@
 
 class TaskDecorator : public FilmComponent {
 
-public:
-	FilmComponent* wrappedComponent;	//decorator can wrap a WorkGroup or TaskItem
+protected:
+	FilmComponent* wrappedComponent;	//kept as FilmComponent*, not narrowed -- can wrap either a WorkGroup or a TaskItem
 
+public:
 	TaskDecorator(FilmComponent* component);
 
-	virtual ~TaskDecorator();
+	virtual ~TaskDecorator();	//deletes wrappedComponent: the decorator now stands in for it in the tree
 
-	virtual double getCost() = 0;
+	std::string getName();		//delegates to wrappedComponent
 
-	virtual void request() = 0; 	//pure virtual; typically delegates to wrappedComponent->request() plus extra behaviour
+	virtual double getCost() = 0;	//pure virtual: concrete decorators add their surcharge on top of wrappedComponent->getCost()
+
+	virtual void request() = 0;	//pure virtual: concrete decorators typically delegate then add extra behaviour
+
+	void print();				//delegates to wrappedComponent
+
+	FilmIterator* createDepthFirstSearchIterator();	//delegates to wrappedComponent
+
+	FilmIterator* createPendingTaskIterator();			//delegates to wrappedComponent
 };
 
 #endif

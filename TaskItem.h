@@ -36,6 +36,9 @@ public:
 	int getReshootCount();
 
 	void incrementReshootCount();	//called by NeedsReshoot on entry
+
+	TaskState* getCurrentState();	//needed by PendingTaskIterator's filterAndCollect
+
 };
 
 #endif

@@ -5,13 +5,14 @@
 
 class OvertimeDecorator :public TaskDecorator {
 
+	private:
+		double overtimeRate;
+	public:
+		OvertimeDecorator(FilmComponent* component);
 
-public:
-	OvertimeDecorator(FilmComponent* component);
+		double getCost();	//wrappedComponent->getCost() + overtimeRate
 
-	double getCost();
-
-	void overTimeRate();
+		void request();		//delegates to wrappedComponent->request(), then logs the overtime note
 };
 
 #endif

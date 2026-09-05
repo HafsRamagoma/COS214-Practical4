@@ -2,12 +2,21 @@
 #define COMPLETED_H
 
 #include "TaskState.h"
+#include "TaskItem.h"
 
 class Completed : public TaskState {
 
 
-public:
-	void process();
+	public:
+		Completed(TaskItem* task);
+
+		void process();
+
+		std::string getStateName();
+
+		void flagReshoot();	//legal: -> NeedsReshoot (director isn't happy with the take)
+
+		bool isPending();	//overridden: false -- completed work isn't pending
 };
 
 #endif

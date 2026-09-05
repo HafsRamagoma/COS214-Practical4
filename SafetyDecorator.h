@@ -2,6 +2,7 @@
 #define SAFETYDECORATOR_H
 
 #include "TaskDecorator.h"
+#include <string>
 
 class SafetyDecorator : TaskDecorator {
 
@@ -13,7 +14,9 @@ private:
 public:
 	SafetyDecorator(FilmComponent* component, int riskLevel);
 	
-	void request();
+	double getCost();
+
+	void request();		//performs a compliance check, sets compliant, then delegates
 };
 
 #endif

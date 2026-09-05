@@ -14,7 +14,7 @@ class Completed : public TaskState {
 
 		std::string getStateName();
 
-		void flagReshoot();	//legal: -> NeedsReshoot (director isn't happy with the take)
+		void flagReshoot();	//Completed-> NeedsReshoot (director isn't happy with the take)
 
 		bool isPending();	//overridden: false -- completed work isn't pending
 };

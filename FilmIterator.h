@@ -7,16 +7,17 @@
 class FilmIterator {
 
 
+//Iterator is pure virtual, interface only
 public:
 	virtual ~FilmIterator();
 
-	void first();
+	virtual void first() = 0;
 
-	void next();
+	virtual void next() = 0;
 
-	bool isDone();
+	virtual bool isDone() = 0;
 
-	FilmComponent* currentItem();
+	virtual FilmComponent* currentItem() = 0;
 };
 
 #endif

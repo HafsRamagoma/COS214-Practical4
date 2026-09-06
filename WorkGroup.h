@@ -28,7 +28,7 @@ public:
 	~WorkGroup(); 		//deletes all its owned children
 
 	//return new snapsots
-	FilmIterator* createDepthFirstSearchIterator();
+	FilmIterator* createDepthFirstIterator();
 
 	FilmIterator* createPendingTaskIterator();
 };

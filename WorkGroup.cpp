@@ -50,8 +50,10 @@ WorkGroup::~WorkGroup() {
 	taskItems.clear();
 }
 
-FilmIterator* WorkGroup::createDepthFirstSearchIterator() {
-	return nullptr;
+FilmIterator* WorkGroup::createDepthFirstIterator() {
+
+    //TODO fix, bit later
+	return new DepthFirstIterator(this);
 }
 
 FilmIterator* WorkGroup::createPendingTaskIterator() {

@@ -2,7 +2,8 @@
 #define FILMCOMPONENT_H
 
 #include <string>
-#include "FilmIterator.h"
+
+class FilmIterator;
 
 class FilmComponent {
 
@@ -26,7 +27,7 @@ public:
 
 	virtual ~FilmComponent();
 
-	virtual FilmIterator* createDepthFirstSearchIterator() = 0;
+	virtual FilmIterator* createDepthFirstIterator() = 0;
 
 	virtual FilmIterator* createPendingTaskIterator() = 0;
 };

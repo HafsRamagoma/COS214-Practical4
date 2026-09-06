@@ -27,9 +27,12 @@ public:
 
 	void print();				//outputs taskName, taskCost and current state's name
 
-	FilmIterator* createDepthFirstSearchIterator();  //returns a trivial single element iterator over itself
+	FilmIterator* createDepthFirstIterator();  //returns a trivial single element iterator over itself
 
 	FilmIterator* createPendingTaskIterator();  //returns a trivial iterator, empty unless this task is itself pending
+
+	bool isCompleted() const;	//overridden: delegates to currentState->isPending(), so
+								//PendingtaskIterator can tell finished tasks from active ones
 
 	void changeState(TaskState* newState);     //delete old state -> assign new state
 

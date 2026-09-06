@@ -54,11 +54,25 @@ WorkGroup::~WorkGroup() {
 }
 
 FilmIterator* WorkGroup::createDepthFirstIterator() {
-
-    //TODO fix, bit later
 	return new DepthFirstIterator(this);
 }
 
 FilmIterator* WorkGroup::createPendingTaskIterator() {
 	return new PendingtaskIterator(this);
 }
+
+size_t WorkGroup::getChildCount() const {
+	return taskItems.size();
+}
+
+FilmComponent* WorkGroup::getChild(size_t index) const {
+	if (index < taskItems.size()) {
+		return taskItems[index];
+	}
+	return nullptr;
+}
+
+bool WorkGroup::isLeaf() const {
+	return false;
+}
+

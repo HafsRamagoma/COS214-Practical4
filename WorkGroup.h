@@ -31,6 +31,14 @@ public:
 	FilmIterator* createDepthFirstIterator();
 
 	FilmIterator* createPendingTaskIterator();
+
+	size_t getChildCount() const;	//overridden: FilmComponent's default (0) would make every
+									//WorkGroup look empty to the iterators
+
+	FilmComponent* getChild(size_t index) const;	//overridden: FilmComponent's default (nullptr)
+													//would break traversal into children
+
+	bool isLeaf() const;	//overridden: false -- a WorkGroup is a composite, not a leaf
 };
 
 #endif

@@ -3,7 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "TaskItem.h"
+
+class TaskItem; //forward declaration instead since task state only holds a taskitem*
 
 class TaskState {
 
@@ -15,27 +16,27 @@ public:
 
 	virtual ~TaskState();
 
-	virtual void process();		//defines the state behaviour
+	virtual void process() = 0;		//defines the state behaviour
 
 	virtual std::string getStateName() = 0; //used by TaskItem::print()
 
 	//All six transitions below default to "reject and log" in the base class.
 	//Concrete states override only the transitions that are legal for them.
 
-	void start();
+	virtual void start();
 
-	void block();
+	virtual void block();
 
-	void resume();
+	virtual void resume();
 
-	void complete();
+	virtual void complete();
 
-	void cancel();
+	virtual void cancel();
 
-	void flagReshoot();
+	virtual void flagReshoot();
 
 	//used by PendingTaskIterator so it doesn't compare state name strings
-	bool isPending();
+	virtual bool isPending();
 };
 
 #endif

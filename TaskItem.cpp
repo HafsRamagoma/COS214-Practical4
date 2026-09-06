@@ -1,5 +1,7 @@
 #include "TaskItem.h"
 #include "NotStarted.h"
+#include "DepthFirstIterator.h"
+#include "PendingtaskIterator.h"
 #include <iostream>
 
 TaskItem::TaskItem(std::string name, double cost) {
@@ -29,12 +31,16 @@ void TaskItem::print() {
 	std::cout << taskName << " (cost: " << taskCost << ") - " << currentState->getStateName() << std::endl;
 }
 
-FilmIterator* TaskItem::createDepthFirstSearchIterator() {
-	return nullptr;
+FilmIterator* TaskItem::createDepthFirstIterator() {
+	return new DepthFirstIterator(this);
 }
 
 FilmIterator* TaskItem::createPendingTaskIterator() {
-	return nullptr;
+	return new PendingtaskIterator(this);
+}
+
+bool TaskItem::isCompleted() const {
+	return !currentState->isPending();
 }
 
 void TaskItem::changeState(TaskState* newState) {

@@ -7,6 +7,10 @@ DepthFirstIterator::DepthFirstIterator(FilmComponent* root) {
 void DepthFirstIterator::populateSnapShot(FilmComponent* component) {
     if(!component) return;
     snapshot.push_back(component);
+    //only iterated to the root and not its children
+    for(size_t i = 0; i < component->getChildCount(); i++){
+        populateSnapShot(component->getChild(i));
+    }
 
 }
 
@@ -26,4 +30,9 @@ bool DepthFirstIterator::isDone() {
 
 FilmComponent* DepthFirstIterator::currentItem() {
     return isDone() ? nullptr : snapshot[index];
+}
+
+//added destructor
+DepthFirstIterator::~DepthFirstIterator() {
+    snapshot.clear();
 }

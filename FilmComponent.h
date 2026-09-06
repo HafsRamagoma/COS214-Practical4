@@ -30,6 +30,14 @@ public:
 	virtual FilmIterator* createDepthFirstIterator() = 0;
 
 	virtual FilmIterator* createPendingTaskIterator() = 0;
+
+	virtual size_t getChildCount() const;
+
+	virtual FilmComponent* getChild(size_t index) const;
+
+	virtual bool isLeaf() const;
+
+	virtual bool isCompleted() const;
 };
 
 #endif

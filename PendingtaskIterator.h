@@ -7,20 +7,20 @@ class PendingtaskIterator : public FilmIterator {
 
 private:
 	std::vector<FilmComponent*> pendingList;
-	int index;
+	size_t index;
 
 public:
 	PendingtaskIterator(FilmComponent* root);
 
 	void filterAndCollect(FilmComponent* component);
 
-	void first();
+	void first() override;
 
-	void next();
+	void next() override;
 
-	bool isDone();
+	bool isDone() const;
 
-	FilmComponent* currentItem();
+	FilmComponent* currentItem() const;
 };
 
 #endif

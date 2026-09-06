@@ -21,3 +21,19 @@ void FilmComponent::remove(FilmComponent* component) {
 std::string FilmComponent::getName() {
 	return name;
 }
+
+size_t FilmComponent::getChildCount() const {
+	return 0;
+}
+
+FilmComponent* FilmComponent::getChild(size_t index) const {
+	return nullptr;
+}
+
+bool FilmComponent::isLeaf() const {
+	return true;
+}
+
+bool FilmComponent::isCompleted() const {
+	return false;
+}

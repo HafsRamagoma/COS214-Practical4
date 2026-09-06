@@ -10,11 +10,12 @@ private:
 	int index;
 
 private:
-	DepthFirstIterator(FilmComponent* root);
 
 	void populateSnapShot(FilmComponent* component);
 
 public:
+
+    DepthFirstIterator(FilmComponent* root);
 	void first();
 
 	void next();
@@ -22,6 +23,8 @@ public:
 	bool isDone();
 
 	FilmComponent* currentItem();
+
+	~DepthFirstIterator();
 };
 
 #endif

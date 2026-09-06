@@ -1,5 +1,8 @@
 #include "WorkGroup.h"
 #include <iostream>
+#include "DepthFirstIterator.h"
+#include "PendingtaskIterator.h"
+
 
 WorkGroup::WorkGroup(std::string name) {
 	this->name = name;
@@ -57,5 +60,5 @@ FilmIterator* WorkGroup::createDepthFirstIterator() {
 }
 
 FilmIterator* WorkGroup::createPendingTaskIterator() {
-	return nullptr;
+	return new PendingtaskIterator(this);
 }

@@ -21,6 +21,8 @@ public:
 	bool isDone() const;
 
 	FilmComponent* currentItem() const;
+
+	~PendingtaskIterator();
 };
 
 #endif

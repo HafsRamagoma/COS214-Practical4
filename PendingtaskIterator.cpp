@@ -37,3 +37,7 @@ FilmComponent* PendingtaskIterator::currentItem() const {
     if(isDone()) return nullptr;
     return pendingList[index];
 }
+
+PendingtaskIterator::~PendingtaskIterator() {
+    pendingList.clear();
+}

@@ -18,9 +18,9 @@ public:
 
 	void next() override;
 
-	bool isDone() const;
+	bool isDone() override;
 
-	FilmComponent* currentItem() const;
+	FilmComponent* currentItem() override;
 
 	~PendingtaskIterator();
 };

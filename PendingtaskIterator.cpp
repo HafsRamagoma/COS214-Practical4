@@ -29,11 +29,11 @@ void PendingtaskIterator::next() {
     }
 }
 
-bool PendingtaskIterator::isDone() const {
+bool PendingtaskIterator::isDone() {
     return index >= pendingList.size();
 }
 
-FilmComponent* PendingtaskIterator::currentItem() const {
+FilmComponent* PendingtaskIterator::currentItem() {
     if(isDone()) return nullptr;
     return pendingList[index];
 }

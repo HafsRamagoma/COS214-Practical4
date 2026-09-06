@@ -7,8 +7,10 @@
 
 class WorkGroup : public FilmComponent {
 
-public:
+private:
 	std::vector<FilmComponent*> taskItems;
+
+public:
 
 	WorkGroup(std::string name);
 

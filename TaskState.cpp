@@ -6,10 +6,6 @@ TaskState::TaskState(TaskItem* task) {
 
 TaskState::~TaskState(){}
 
-std::string TaskState::getStateName() {
-	// TODO - implement TaskState::getStateName
-	throw "Not yet implemented";
-}
 
 void TaskState::start() {
 	std::cout << "Invalid transition: start() called from " << getStateName() << std::endl;

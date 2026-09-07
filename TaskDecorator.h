@@ -21,9 +21,17 @@ public:
 
 	void print();				//delegates to wrappedComponent
 
-	FilmIterator* createDepthFirstSearchIterator();	//delegates to wrappedComponent
+	FilmIterator* createDepthFirstIterator();	//delegates to wrappedComponent
 
-	FilmIterator* createPendingTaskIterator();			//delegates to wrappedComponent
+	FilmIterator* createPendingTaskIterator();			//delegates to 
+	
+	size_t getChildCount() const;
+
+	FilmComponent* getChild(size_t index) const;
+
+	bool isLeaf() const;
+
+	bool isCompleted() const;
 };
 
 #endif

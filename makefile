@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -g
+CXXFLAGS = -Wall -Wextra -std=c++11 -g
 
 # Output executable name
 TARGET = taskforge

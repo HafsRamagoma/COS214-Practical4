@@ -14,6 +14,8 @@
 #include "TaskItem.h"
 #include "TaskState.h"
 #include "WorkGroup.h"
+#include "EquipmentDecorator.h"
+
 
 void taskTesting(){
     std::cout<<"Testing all states:"<<std::endl;
@@ -109,6 +111,39 @@ int main(){
     delete it;
 
     delete movieProject;
+
+    std::cout << "\nTesting Decorators:" << std::endl;
+
+    FilmComponent* overtimeTask =
+        new OvertimeDecorator(
+            new TaskItem("Late Night Filming", 10000.0)
+        );
+
+    std::cout << "\nOvertime decorated task:" << std::endl;
+    overtimeTask->print();
+    std::cout << "Cost with overtime: " << overtimeTask->getCost() << std::endl;
+    overtimeTask->request();
+
+
+    FilmComponent* stackedTask =
+        new EquipmentDecorator(
+            new SafetyDecorator(
+                new OvertimeDecorator(
+                    new TaskItem("Stunt Scene", 15000.0)
+                ),
+                3
+            ),
+            "Camera Crane",
+            2500.0
+        );
+
+    std::cout << "\nStacked decorated task:" << std::endl;
+    stackedTask->print();
+    std::cout << "Total decorated cost: " << stackedTask->getCost() << std::endl;
+    stackedTask->request();
+
+    delete overtimeTask;
+    delete stackedTask;
 
     taskTesting();
 

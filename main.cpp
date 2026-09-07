@@ -26,7 +26,9 @@ void taskTesting(){
     filming->print();
 
     std::cout<<"\nStarting the task..."<<std::endl;
+    filming->getCurrentState()->start();
     filming->request();
+
 
     std::cout << "\nBlocking the task..."<<std::endl;
     filming->getCurrentState()->block();

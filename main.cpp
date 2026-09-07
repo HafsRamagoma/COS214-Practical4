@@ -15,6 +15,48 @@
 #include "TaskState.h"
 #include "WorkGroup.h"
 
+void taskTesting(){
+    std::cout<<"Testing all states:"<<std::endl;
+
+    TaskItem* filming = new TaskItem("Scene 1 Filming",1000.0);
+    filming->print();
+
+    std::cout<< "\nAttempting to complete before starting..."<<std::endl;
+    filming->getCurrentState()->complete();
+    filming->print();
+
+    std::cout<<"\nStarting the task..."<<std::endl;
+    filming->request();
+
+    std::cout << "\nBlocking the task..."<<std::endl;
+    filming->getCurrentState()->block();
+    filming->print();
+
+    std::cout<<"\nResuming and completing.."<<std::endl;
+    filming->getCurrentState()->resume();
+    filming->getCurrentState()->complete();
+    filming->print();
+
+    std::cout<<"Testing iterator with the state"<<std::endl;
+    WorkGroup* project = new WorkGroup("Mini Project");
+    project->add(filming);
+
+    TaskItem* script = new TaskItem("Script writing",500.0);
+    project->add(script);
+
+    std::cout<<"Current Pending Tasks (Completed tasks shouldn't show)"<<std::endl;
+    FilmIterator* it = project->createPendingTaskIterator();
+    it->first();
+    while(!it->isDone()){
+        std::cout << "--" << it->currentItem()->getName() << std::endl;
+        it->next();
+    }
+
+    delete it;
+    delete project;
+
+}
+
 
 int main(){
     FilmComponent* movieProject = new WorkGroup ("Move: Adventure with the Bois and Gal");
@@ -66,5 +108,9 @@ int main(){
 
     delete movieProject;
 
+    taskTesting();
 
+
+
+    return 0;
 }

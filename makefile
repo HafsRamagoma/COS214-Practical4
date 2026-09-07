@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -g
 
 # Output executable name
-TARGET = TaskForge
+TARGET = taskforge
 
 # Automatically gather all .cpp files and generate matching .o targets
 SRCS = $(wildcard *.cpp)

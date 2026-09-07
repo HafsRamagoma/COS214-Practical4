@@ -4,7 +4,7 @@
 #include "TaskDecorator.h"
 #include <string>
 
-class SafetyDecorator : TaskDecorator {
+class SafetyDecorator : public TaskDecorator {
 
 private:
 

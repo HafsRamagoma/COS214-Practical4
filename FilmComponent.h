@@ -13,9 +13,9 @@ protected:
 public:
 	FilmComponent();
 
-	virtual void add(FilmComponent* component);
+	virtual void add(FilmComponent*);
 
-	virtual void remove(FilmComponent* component);
+	virtual void remove(FilmComponent*);
 
 	virtual std::string getName();
 
@@ -33,7 +33,7 @@ public:
 
 	virtual size_t getChildCount() const;
 
-	virtual FilmComponent* getChild(size_t index) const;
+	virtual FilmComponent* getChild(size_t) const;
 
 	virtual bool isLeaf() const;
 

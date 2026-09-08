@@ -50,21 +50,6 @@ void taskTesting(){
     std::cout<<"\nResuming and completing.."<<std::endl;
     filming->getCurrentState()->resume();
     filming->getCurrentState()->complete();
-
-
-    std::cout << "\n flagReshoot(): Completed -> Needs Reshoot (attempt #"
-            << filming->getReshootCount() + 1 << ")" << std::endl;
-    filming->getCurrentState()->flagReshoot();
-    filming->print();
-
-    std::cout << "\n[Invalid] Attempting  complete() from Needs Reshoot..." << std::endl;
-    filming->getCurrentState()->complete();
- 
-    std::cout << "\n Reshooting now In Progress" << std::endl;
-    filming->getCurrentState()->start();
-
-    std::cout << "\n complete(): In Progress -> Completed (final)" << std::endl;
-    filming->getCurrentState()->complete();
     filming->print();
 
     //Testing cancellation from a normal sequenced path

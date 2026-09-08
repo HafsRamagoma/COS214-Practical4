@@ -9,12 +9,12 @@ FilmComponent::~FilmComponent() {
 	// are responsible for deleting whatever they own.
 }
 
-void FilmComponent::add(FilmComponent* component) {
+void FilmComponent::add(FilmComponent*) {
 	// Default: do nothing. A leaf (or any component that doesn't manage children)
 	// simply ignores an attempt to add a child, rather than crashing.
 }
 
-void FilmComponent::remove(FilmComponent* component) {
+void FilmComponent::remove(FilmComponent*) {
 	// Default: do nothing
 }
 
@@ -26,7 +26,7 @@ size_t FilmComponent::getChildCount() const {
 	return 0;
 }
 
-FilmComponent* FilmComponent::getChild(size_t index) const {
+FilmComponent* FilmComponent::getChild(size_t ) const {
 	return nullptr;
 }
 

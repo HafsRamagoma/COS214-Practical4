@@ -16,7 +16,6 @@
 #include "WorkGroup.h"
 #include "EquipmentDecorator.h"
 
-
 void taskTesting(){
     std::cout<<"Testing all states:"<<std::endl;
 
@@ -56,6 +55,8 @@ void taskTesting(){
         it->next();
     }
 
+
+
     delete it;
     delete project;
 
@@ -63,7 +64,7 @@ void taskTesting(){
 
 
 int main(){
-    FilmComponent* movieProject = new WorkGroup ("Move: Adventure with the Bois and Gal");
+    FilmComponent* movieProject = new WorkGroup ("Movie: Adventure with the Bois and Gal");
 
     WorkGroup* preProduction = new WorkGroup("Pre-Production Phase");
     WorkGroup* production = new WorkGroup("Production Phase");
@@ -107,6 +108,21 @@ int main(){
         }
         it->next();
     }
+
+    std::cout<<"DepthFirstIterator should just print everything"<<std::endl;
+    FilmIterator* dit = movieProject->createDepthFirstIterator();
+    dit->first();
+    while(!dit->isDone()){
+        FilmComponent* dCurrent = dit->currentItem();
+
+        if(dCurrent){
+            std::cout<<dCurrent->getName() << std::endl;
+        }
+
+        dit->next();
+    }
+
+    delete dit;
 
     delete it;
 

@@ -7,7 +7,7 @@ class DepthFirstIterator : public FilmIterator {
 
 private:
 	std::vector<FilmComponent*> snapshot;
-	int index;
+	size_t index;
 
 private:
 

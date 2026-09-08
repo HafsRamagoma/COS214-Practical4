@@ -38,6 +38,7 @@ void taskTesting(){
     std::cout<<"\nResuming and completing.."<<std::endl;
     filming->getCurrentState()->resume();
     filming->getCurrentState()->complete();
+    filming->changeState(new NeedsReshoot(filming));
     filming->print();
 
     std::cout<<"Testing iterator with the state"<<std::endl;
@@ -46,6 +47,9 @@ void taskTesting(){
 
     TaskItem* script = new TaskItem("Script writing",500.0);
     project->add(script);
+
+    script->changeState(new Cancelled(script));
+
 
     std::cout<<"Current Pending Tasks (Completed tasks shouldn't show)"<<std::endl;
     FilmIterator* it = project->createPendingTaskIterator();

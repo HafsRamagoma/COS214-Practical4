@@ -16,30 +16,77 @@
 #include "WorkGroup.h"
 #include "EquipmentDecorator.h"
 
-
 void taskTesting(){
-    std::cout<<"Testing all states:"<<std::endl;
+    std::cout<<"Testing all states (valid and invalid):"<<std::endl;
 
     TaskItem* filming = new TaskItem("Scene 1 Filming",1000.0);
     filming->print();
 
-    std::cout<< "\nAttempting to complete before starting..."<<std::endl;
+    std::cout<< "\n[Invalid] Attempting to complete before starting..."<<std::endl;
     filming->getCurrentState()->complete();
+    filming->print();
+
+    std::cout<< "\n[Invalid] Attempting to block before starting..."<<std::endl;
+    filming->getCurrentState()->block();
     filming->print();
 
     std::cout<<"\nStarting the task..."<<std::endl;
     filming->getCurrentState()->start();
     filming->request();
 
+    std::cout<< "\n[Invalid] Attempting to start again from in-progress "<<std::endl;
+    filming->getCurrentState()->start();
+    filming->print();
+
 
     std::cout << "\nBlocking the task..."<<std::endl;
     filming->getCurrentState()->block();
     filming->print();
 
+    std::cout<< "\n[Invalid] Attempting to complete from blocked..."<<std::endl;
+    filming->getCurrentState()->complete();
+    filming->print();
+
     std::cout<<"\nResuming and completing.."<<std::endl;
     filming->getCurrentState()->resume();
     filming->getCurrentState()->complete();
+
+
+    std::cout << "\n flagReshoot(): Completed -> Needs Reshoot (attempt #"
+            << filming->getReshootCount() + 1 << ")" << std::endl;
+    filming->getCurrentState()->flagReshoot();
     filming->print();
+
+    std::cout << "\n[Invalid] Attempting  complete() from Needs Reshoot..." << std::endl;
+    filming->getCurrentState()->complete();
+ 
+    std::cout << "\n Reshooting now In Progress" << std::endl;
+    filming->getCurrentState()->start();
+
+    std::cout << "\n complete(): In Progress -> Completed (final)" << std::endl;
+    filming->getCurrentState()->complete();
+    filming->print();
+
+    //Testing cancellation from a normal sequenced path
+    std::cout << "\n--- Cancellation path (separate task) ---" << std::endl;
+    TaskItem* reshoot = new TaskItem("B-Roll Pickup", 800.0);
+    reshoot->print();
+    std::cout << "[Valid] cancel(): Not Started -> Cancelled" << std::endl;
+    reshoot->getCurrentState()->cancel();
+    reshoot->print();
+    std::cout << "[Invalid] start() from Cancelled (terminal state)..." << std::endl;
+    reshoot->getCurrentState()->start();
+ 
+    std::cout << "\n--- Cancellation from Blocked (separate task) ---" << std::endl;
+    TaskItem* wetWeather = new TaskItem("Exterior Shot", 2200.0);
+    wetWeather->getCurrentState()->start();
+    wetWeather->getCurrentState()->block();
+    wetWeather->print();
+    std::cout << "[Valid] cancel(): Blocked -> Cancelled" << std::endl;
+    wetWeather->getCurrentState()->cancel();
+    wetWeather->print();
+
+    //----------------------------------------------------------------------------------
 
     std::cout<<"Testing iterator with the state"<<std::endl;
     WorkGroup* project = new WorkGroup("Mini Project");
@@ -47,6 +94,9 @@ void taskTesting(){
 
     TaskItem* script = new TaskItem("Script writing",500.0);
     project->add(script);
+
+    script->changeState(new Cancelled(script));
+
 
     std::cout<<"Current Pending Tasks (Completed tasks shouldn't show)"<<std::endl;
     FilmIterator* it = project->createPendingTaskIterator();
@@ -56,14 +106,18 @@ void taskTesting(){
         it->next();
     }
 
+
+
     delete it;
     delete project;
+    delete reshoot;
+    delete wetWeather;
 
 }
 
 
 int main(){
-    FilmComponent* movieProject = new WorkGroup ("Move: Adventure with the Bois and Gal");
+    FilmComponent* movieProject = new WorkGroup ("Movie: Adventure with the Bois and Gal");
 
     WorkGroup* preProduction = new WorkGroup("Pre-Production Phase");
     WorkGroup* production = new WorkGroup("Production Phase");
@@ -107,6 +161,21 @@ int main(){
         }
         it->next();
     }
+
+    std::cout<<"DepthFirstIterator should just print everything"<<std::endl;
+    FilmIterator* dit = movieProject->createDepthFirstIterator();
+    dit->first();
+    while(!dit->isDone()){
+        FilmComponent* dCurrent = dit->currentItem();
+
+        if(dCurrent){
+            std::cout<<dCurrent->getName() << std::endl;
+        }
+
+        dit->next();
+    }
+
+    delete dit;
 
     delete it;
 
